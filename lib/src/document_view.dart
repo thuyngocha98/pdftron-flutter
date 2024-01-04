@@ -628,7 +628,7 @@ class DocumentViewController {
   Future<void> exitSearchMode() {
     return _channel.invokeMethod(Functions.exitSearchMode);
   }
-  
+
   /// Zooms the viewer to the given scale using the given coordinate as the center.
   ///
   /// The zoom center ([x],[y]) is represented in the screen space, whose origin
@@ -689,7 +689,7 @@ class DocumentViewController {
       Parameters.animated: animated,
     });
   }
-  
+
   /// Gets a list of absolute file paths to all saved signatures as PDFs.
   Future<List<String>?> getSavedSignatures() {
     return _channel.invokeMethod(Functions.getSavedSignatures);
@@ -736,7 +736,7 @@ class DocumentViewController {
       Parameters.blue: blue
     });
   }
-  
+
   /// Gets the horizontal and vertical scroll position in the current document viewer.
   ///
   /// The scroll position is returned as a `Map<String, int>` with the keys
@@ -774,22 +774,19 @@ class DocumentViewController {
 
   // Hygen Generated Methods
   Future<void> setLayoutMode(String layoutMode) {
-    return _channel.invokeMethod(Functions.setLayoutMode, <String, dynamic>{
-      Parameters.layoutMode: layoutMode
-    });
+    return _channel.invokeMethod(Functions.setLayoutMode,
+        <String, dynamic>{Parameters.layoutMode: layoutMode});
   }
 
   Future<void> setFitMode(String fitMode) {
-    return _channel.invokeMethod(Functions.setFitMode, <String, dynamic>{
-      Parameters.fitMode: fitMode
-    });
+    return _channel.invokeMethod(
+        Functions.setFitMode, <String, dynamic>{Parameters.fitMode: fitMode});
   }
 
   /// Gets the list of annotations on the given page.
   Future<List<Annot>?> getAnnotationsOnPage(int pageNumber) {
-    return _channel.invokeMethod(Functions.getAnnotationsOnPage, <String, dynamic>{
-      Parameters.pageNumber: pageNumber
-    }).then((jsonArray) {
+    return _channel.invokeMethod(Functions.getAnnotationsOnPage,
+        <String, dynamic>{Parameters.pageNumber: pageNumber}).then((jsonArray) {
       List<dynamic> annotations = jsonDecode(jsonArray);
       List<Annot> annotList = new List<Annot>.empty(growable: true);
       for (dynamic annotation in annotations) {
@@ -797,5 +794,12 @@ class DocumentViewController {
       }
       return annotList;
     });
+  }
+
+  /// Hatn
+  /// Set theme mode in the current document.
+  Future<void> setThemeMode(bool isDarkMode) {
+    return _channel.invokeMethod(Functions.setThemeMode,
+        <String, dynamic>{Parameters.isDarkMode: isDarkMode});
   }
 }

@@ -263,6 +263,9 @@ public class PluginUtils {
 
     public static final String KEY_FIT_MODE = "fitMode";
 
+    // Hatn
+    public static final String KEY_IS_DARK_MODE = "isDarkMode";
+
 
     public static final String EVENT_EXPORT_ANNOTATION_COMMAND = "export_annotation_command_event";
     public static final String EVENT_EXPORT_BOOKMARK = "export_bookmark_event";
@@ -307,6 +310,7 @@ public class PluginUtils {
     public static final String FUNCTION_MERGE_ANNOTATIONS = "mergeAnnotations";
     public static final String FUNCTION_EXPORT_ANNOTATIONS = "exportAnnotations";
     public static final String FUNCTION_FLATTEN_ANNOTATIONS = "flattenAnnotations";
+    public static final String FUNCTION_SET_THEME_MODE = "setThemeMode"; // Hatn
     public static final String FUNCTION_DELETE_ANNOTATIONS = "deleteAnnotations";
     public static final String FUNCTION_SELECT_ANNOTATION = "selectAnnotation";
     public static final String FUNCTION_SET_FLAGS_FOR_ANNOTATIONS = "setFlagsForAnnotations";
@@ -2711,6 +2715,20 @@ public class PluginUtils {
                 getAnnotationsOnPage(call, result, component);
                 break;
             }
+            // Hatn
+            case FUNCTION_SET_THEME_MODE: {
+                checkFunctionPrecondition(component);
+                Boolean isDarkMode = call.argument(KEY_IS_DARK_MODE);
+                if (isDarkMode != null) {
+                    try {
+                        setThemeMode(component, isDarkMode);
+                    } catch (PDFNetException ex) {
+                        ex.printStackTrace();
+                        result.error(Integer.toString(ex.hashCode()), "JSONException Error: " + ex, null);
+                    }
+                }
+                break;
+            }
             default:
                 Log.e("PDFTronFlutter", "notImplemented: " + call.method);
                 result.notImplemented();
@@ -4648,5 +4666,26 @@ public class PluginUtils {
             }
         }
         return null;
+    }
+
+    // Hatn
+    private static void setThemeMode(ViewerComponent component, boolean isDarkMode) throws PDFNetException {
+        PdfViewCtrlTabHostFragment2 pdfViewCtrlTabHostFragment = component.getPdfViewCtrlTabHostFragment();
+        if (pdfViewCtrlTabHostFragment == null) {
+            return;
+        }
+
+        PDFViewCtrl pdfViewCtrl = component.getPdfViewCtrl();
+        if (pdfViewCtrl == null) {
+            return;
+        }
+        Context context = pdfViewCtrl.getContext();
+
+        int mode = isDarkMode ? PdfViewCtrlSettingsManager.KEY_PREF_COLOR_MODE_NIGHT : PdfViewCtrlSettingsManager.KEY_PREF_COLOR_MODE_NORMAL;
+        PdfViewCtrlSettingsManager.setColorMode(context, mode);
+
+        int color = isDarkMode ? Color.argb(255, 28, 27, 31) : Color.WHITE;
+        pdfViewCtrlTabHostFragment.getToolbar().setBackgroundColor(color);
+        pdfViewCtrlTabHostFragment.updateColorMode();
     }
 }

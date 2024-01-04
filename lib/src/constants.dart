@@ -1,4 +1,3 @@
-
 /// Names of functions.
 class Functions {
   static const getPlatformVersion = "getPlatformVersion";
@@ -76,8 +75,11 @@ class Functions {
   static const getScrollPos = "getScrollPos";
   static const setHorizontalScrollPosition = "setHorizontalScrollPosition";
   static const setVerticalScrollPosition = "setVerticalScrollPosition";
-  static const smartZoom = "smartZoom"; 
+  static const smartZoom = "smartZoom";
   static const getVisiblePages = "getVisiblePages";
+
+  // Hatn
+  static const setThemeMode = "setThemeMode";
 
   // Hygen Generated Methods
   static const setLayoutMode = "setLayoutMode";
@@ -121,6 +123,9 @@ class Parameters {
   static const matchCase = "matchCase";
   static const matchWholeWord = "matchWholeWord";
   static const animated = "animated";
+
+  // Hatn
+  static const isDarkMode = "isDarkMode";
 
   // Hygen Generated Method Parameters
   static const layoutMode = "layoutMode";

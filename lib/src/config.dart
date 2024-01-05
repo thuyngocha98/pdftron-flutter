@@ -14,6 +14,7 @@ class Config {
   var _tabletLayoutEnabled;
   var _initialPageNumber;
   var _isBase64String;
+  var _isDarkModeString; // Hatn
   var _base64FileExtension;
   var _hideThumbnailFilterModes;
   var _longPressMenuEnabled;
@@ -146,6 +147,10 @@ class Config {
   /// When viewing a document initialized with a base64 string, a temporary file
   /// is created on Android, but not on iOS. Defaults to false.
   set isBase64String(bool value) => _isBase64String = value;
+
+  /// Hatn
+  /// Set dark mode theme for the app. Defaults to false.
+  set isDarkModeString(bool value) => _isDarkModeString = value;
 
   /// The file extension to use when [isBase64String] is true.
   ///
@@ -611,6 +616,7 @@ class Config {
         _tabletLayoutEnabled = json['tabletLayoutEnabled'],
         _initialPageNumber = json['initialPageNumber'],
         _isBase64String = json['isBase64String'],
+        _isDarkModeString = json['isDarkModeString'], // Hatn
         _base64FileExtension = json['base64FileExtension'],
         _hideThumbnailFilterModes = json['hideThumbnailFilterModes'],
         _longPressMenuEnabled = json['longPressMenuEnabled'],
@@ -691,9 +697,8 @@ class Config {
 
         // Hygen Generated Configs (3)
         _maxSignatureCount = json['maxSignatureCount'],
-
         _fullScreenModeEnabled = json['fullScreenModeEnabled'];
-        
+
   Map<String, dynamic> toJson() => {
         'disabledElements': _disabledElements,
         'disabledTools': _disabledTools,
@@ -704,6 +709,7 @@ class Config {
         'tabletLayoutEnabled': _tabletLayoutEnabled,
         'initialPageNumber': _initialPageNumber,
         'isBase64String': _isBase64String,
+        'isDarkModeString': _isDarkModeString, // Hatn
         'base64FileExtension': _base64FileExtension,
         'hideThumbnailFilterModes': _hideThumbnailFilterModes,
         'longPressMenuEnabled': _longPressMenuEnabled,

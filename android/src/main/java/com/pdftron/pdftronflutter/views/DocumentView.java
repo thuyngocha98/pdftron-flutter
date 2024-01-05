@@ -57,6 +57,8 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 impleme
     private int mInitialPageNumber;
 
     private boolean mIsBase64;
+
+    private boolean mIsDarkMode; //Hatn
     private ArrayList<File> mTempFiles = new ArrayList<>();
 
     private ArrayList<String> mActionOverrideItems;
@@ -129,6 +131,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 impleme
 
         mInitialPageNumber = configInfo.getInitialPageNumber();
         mIsBase64 = configInfo.isBase64();
+        mIsDarkMode = configInfo.isDarkMode(); // Hatn
         mExportDir = configInfo.getExportPath();
         mOpenUrlCacheDir = configInfo.getOpenUrlPath();
         mTempFiles.add(configInfo.getTempFile());
@@ -175,7 +178,7 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView2 impleme
                 .usingCustomHeaders(mCustomHeaders)
                 .usingTabTitle(mTabTitle)
                 .usingTabClass(FlutterPdfViewCtrlTabFragment.class)
-                .usingTheme(R.style.FlutterAppTheme);
+                .usingTheme(mIsDarkMode ? R.style.DarkFlutterAppTheme : R.style.FlutterAppTheme);
     }
 
     @Override

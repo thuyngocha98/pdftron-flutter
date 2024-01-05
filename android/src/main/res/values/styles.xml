@@ -3,8 +3,22 @@
     <style name="FlutterAppTheme" parent="FlutterAppThemeBase">
     </style>
 
+    <style name="DarkFlutterAppTheme" parent="DarkFlutterAppThemeBase">
+    </style>
+
     <style name="FlutterAppThemeBase" parent="PDFTronAppTheme">
         <item name="search_toolbar">@style/FlutterSearchToolbarStyle</item>
+        <item name="pt_bottom_bar_style">@style/LightBottomBarTheme</item>
+        <item name="pt_annotation_toolbar_style">@style/LightAnnotationToolbarTheme</item>
+        <item name="pt_toolbar_style">@style/LightToolbarStyle</item>
+    </style>
+
+    <style name="DarkFlutterAppThemeBase" parent="PDFTronAppTheme">
+        <item name="search_toolbar">@style/FlutterSearchToolbarStyle</item>
+        <item name="pt_bottom_bar_style">@style/DarkBottomBarTheme</item>
+        <item name="pt_annotation_toolbar_style">@style/DarkAnnotationToolbarTheme</item>
+        <item name="pt_toolbar_style">@style/DarkToolbarStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/DarkToolbarNavigationButtonStyle</item>
     </style>
 
     <style name="BaseSearchToolbarStyle">
@@ -13,5 +27,40 @@
 
     <style name="FlutterSearchToolbarStyle" parent="BaseSearchToolbarStyle">
     </style>
+
+    <style name="LightBottomBarTheme" parent="PTBottomBarTheme">
+        <item name="colorBackground">@color/bottombar_background</item>
+        <item name="iconColor">@color/bottombar_icon</item>
+    </style>
+
+    <style name="DarkBottomBarTheme" parent="PTBottomBarTheme">
+        <item name="colorBackground">@color/material_on_background_emphasis_medium</item>
+        <item name="iconColor">@color/gray</item>
+    </style>
+
+    <style name="DarkAnnotationToolbarTheme" parent="PTAnnotationToolbarTheme">
+        <item name="colorBackground">@color/material_on_background_emphasis_high_type</item>
+        <item name="colorBackgroundSecondary">@color/design_default_color_on_secondary</item>
+        <item name="iconColor">@color/gray</item>
+    </style>
+
+    <style name="LightAnnotationToolbarTheme" parent="PTAnnotationToolbarTheme">
+        <item name="colorBackground">@color/annot_toolbar_background_primary</item>
+        <item name="colorBackgroundSecondary">@color/design_default_color_on_secondary</item>
+        <item name="iconColor">@color/annot_toolbar_icon</item>
+    </style>
+
+    <style name="DarkToolbarStyle">
+        <item name="android:background">@color/material_on_background_emphasis_high_type</item>
+    </style>
+
+    <style name="LightToolbarStyle">
+        <item name="android:background">@color/pt_background_color</item>
+    </style>
+
+    <style name="DarkToolbarNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:tint">@color/gray</item>
+    </style>
+
 
 </resources>

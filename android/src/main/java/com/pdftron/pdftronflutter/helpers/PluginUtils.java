@@ -130,6 +130,7 @@ public class PluginUtils {
     public static final String KEY_CONFIG_TABLET_LAYOUT_ENABLED = "tabletLayoutEnabled";
     public static final String KEY_CONFIG_INITIAL_PAGE_NUMBER = "initialPageNumber";
     public static final String KEY_CONFIG_IS_BASE_64_STRING = "isBase64String";
+    public static final String KEY_CONFIG_IS_DARK_MODE_STRING = "isDarkModeString"; //Hatn
     public static final String KEY_CONFIG_BASE_64_FILE_EXTENSION = "base64FileExtension";
     public static final String KEY_CONFIG_HIDE_THUMBNAIL_FILTER_MODES = "hideThumbnailFilterModes";
     public static final String KEY_CONFIG_LONG_PRESS_MENU_ENABLED = "longPressMenuEnabled";
@@ -627,6 +628,7 @@ public class PluginUtils {
     public static class ConfigInfo {
         private int initialPageNumber;
         private boolean isBase64;
+        private boolean isDarkMode; // Hatn
         private File tempFile;
         private JSONObject customHeaderJson;
         private Uri fileUri;
@@ -651,6 +653,7 @@ public class PluginUtils {
         public ConfigInfo() {
             this.initialPageNumber = -1;
             this.isBase64 = false;
+            this.isDarkMode = false; // Hatn
             this.tempFile = null;
             this.customHeaderJson = null;
             this.fileUri = null;
@@ -678,6 +681,10 @@ public class PluginUtils {
 
         public void setIsBase64(boolean isBase64) {
             this.isBase64 = isBase64;
+        }
+
+        public void setIsDarkMode(boolean isDarkMode) {
+            this.isDarkMode = isDarkMode;
         }
 
         public void setExportPath(String exportPath) {
@@ -766,6 +773,10 @@ public class PluginUtils {
 
         public boolean isBase64() {
             return isBase64;
+        }
+
+        public boolean isDarkMode() { // Hatn
+            return isDarkMode;
         }
 
         public String getExportPath() {
@@ -868,6 +879,7 @@ public class PluginUtils {
         ArrayList<ViewModePickerDialogFragment.ViewModePickerItems> viewModePickerItems = new ArrayList<>();
 
         boolean isBase64 = false;
+        boolean isDarkMode = false;
         String base64FileExtension = null;
 
         if (configStr != null && !configStr.equals("null")) {
@@ -910,6 +922,10 @@ public class PluginUtils {
                 if (!configJson.isNull(KEY_CONFIG_IS_BASE_64_STRING)) {
                     isBase64 = configJson.getBoolean(KEY_CONFIG_IS_BASE_64_STRING);
                     configInfo.setIsBase64(isBase64);
+                }
+                if (!configJson.isNull(KEY_CONFIG_IS_DARK_MODE_STRING)) { // Hatn
+                    isDarkMode = configJson.getBoolean(KEY_CONFIG_IS_DARK_MODE_STRING);
+                    configInfo.setIsDarkMode(isDarkMode);
                 }
                 if (!configJson.isNull(KEY_CONFIG_BASE_64_FILE_EXTENSION)) {
                     base64FileExtension = configJson.getString(KEY_CONFIG_BASE_64_FILE_EXTENSION);
@@ -4684,8 +4700,6 @@ public class PluginUtils {
         int mode = isDarkMode ? PdfViewCtrlSettingsManager.KEY_PREF_COLOR_MODE_NIGHT : PdfViewCtrlSettingsManager.KEY_PREF_COLOR_MODE_NORMAL;
         PdfViewCtrlSettingsManager.setColorMode(context, mode);
 
-        int color = isDarkMode ? Color.argb(255, 28, 27, 31) : Color.WHITE;
-        pdfViewCtrlTabHostFragment.getToolbar().setBackgroundColor(color);
         pdfViewCtrlTabHostFragment.updateColorMode();
     }
 }

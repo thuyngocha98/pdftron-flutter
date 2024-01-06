@@ -11,6 +11,8 @@
         <item name="pt_bottom_bar_style">@style/LightBottomBarTheme</item>
         <item name="pt_annotation_toolbar_style">@style/LightAnnotationToolbarTheme</item>
         <item name="pt_toolbar_style">@style/LightToolbarStyle</item>
+        <item name="actionOverflowButtonStyle">@style/LightActionOverflowButtonStyle</item>
+        <item name="pt_toolbar_switcher_button_style">@style/LightToolbarSwitcherButtonTheme</item>
     </style>
 
     <style name="DarkFlutterAppThemeBase" parent="PDFTronAppTheme">
@@ -19,6 +21,8 @@
         <item name="pt_annotation_toolbar_style">@style/DarkAnnotationToolbarTheme</item>
         <item name="pt_toolbar_style">@style/DarkToolbarStyle</item>
         <item name="toolbarNavigationButtonStyle">@style/DarkToolbarNavigationButtonStyle</item>
+        <item name="actionOverflowButtonStyle">@style/DarkActionOverflowButtonStyle</item>
+        <item name="pt_toolbar_switcher_button_style">@style/DarkToolbarSwitcherButtonTheme</item>
     </style>
 
     <style name="BaseSearchToolbarStyle">
@@ -62,5 +66,21 @@
         <item name="android:tint">@color/gray</item>
     </style>
 
+    <style name="DarkActionOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/gray</item>
+    </style>
 
+    <style name="LightActionOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/toolbar_icon</item>
+    </style>
+
+    <style name="DarkToolbarSwitcherButtonTheme" parent="PTToolbarSwitcherButtonTheme">
+        <item name="textColor">@color/gray</item>
+        <item name="iconColor">@color/gray</item>
+    </style>
+
+    <style name="LightToolbarSwitcherButtonTheme" parent="PTToolbarSwitcherButtonTheme">
+        <item name="textColor">@color/toolbar_switcher_button_text</item>
+        <item name="iconColor">@color/toolbar_switcher_button_icon</item>
+    </style>
 </resources>
